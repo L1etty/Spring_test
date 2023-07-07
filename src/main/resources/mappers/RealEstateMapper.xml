@@ -20,7 +20,45 @@
 		FROM
 			`real_estate`
 		WHERE
-			id = #{id};
+			id = #{id}
  	</select>
- 
+ 	
+ 	<select id="selectRentPriceRealEstate" resultType="com.kyung2am.test.realestate.domain.RealEstate" parameterType="int">
+ 		<![CDATA[
+ 		SELECT
+			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+			,`rentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE
+			`rentPrice` < #{rentPrice}
+		]]>
+ 	</select>
+ 	
+ 	<select id="selectAreaPriceRealEstate" resultType="com.kyung2am.test.realestate.domain.RealEstate" parameterType="int">
+ 		<![CDATA[
+ 		SELECT
+			`id`
+			,`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+			,`rentPrice`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`real_estate`
+		WHERE `area` >= #{area} AND `price` <= #{price}
+		ORDER BY `createdAt` DESC
+		]]>
+ 	</select>
+
  </mapper>
