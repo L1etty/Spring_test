@@ -60,5 +60,52 @@
 		ORDER BY `createdAt` DESC
 		]]>
  	</select>
-
+ 	
+ 	<insert id="insertByObjectRealEstate" parameterType="com.kyung2am.test.realestate.domain.RealEstate">
+ 		INSERT INTO `real_estate`
+ 		(
+			`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+ 		)
+ 		VALUE
+ 		(
+ 			#{realtorId}
+ 			,#{address}
+ 			,#{area}
+ 			,#{type}
+ 			,#{price}
+ 		)
+ 	</insert>
+ 	
+ 	<insert id="insertByFiledRealEstate" parameterType="map">
+ 		INSERT INTO `real_estate`
+ 		(
+			`realtorId`
+			,`address`
+			,`area`
+			,`type`
+			,`price`
+ 		)
+ 		VALUE
+ 		(
+ 			#{realtorId}
+ 			,#{address}
+ 			,#{area}
+ 			,#{type}
+ 			,#{price}
+ 		)
+ 	</insert>
+	
+	<update id="updateByFieldRealEstate" parameterType="map">
+		UPDATE
+			`real_estate`
+		SET
+			`type` = '전세'
+			,`price` = 70000
+		WHERE
+			`id` = #{id}
+	</update>
  </mapper>

@@ -29,4 +29,19 @@ public class RealEstateService {
 		return AreaPriceRealEstatList;
 	}
 	
+	public int insertByObjectRealEstate(RealEstate realEstate) {
+		int count = estateRepository.insertByObjectRealEstate(realEstate);
+		return count;
+	}
+	
+	public int insertByFieldRealEstate(int realtorId , String address, int area, String type, int price, int rentPrice) {
+		int count = estateRepository.insertByFiledRealEstate(realtorId, address, area, type, price, rentPrice);
+		return count;
+	}
+	
+	public int updateByFieldRealEstate(int id, String type, int price) {
+		int count = estateRepository.updateByFieldRealEstate(id, type, price);
+		return count;
+	}
+	
 }
