@@ -27,4 +27,6 @@ public interface RealEstateRepository {
 	
 	public int updateByFieldRealEstate(@Param("id") int id, @Param("type") String type, @Param("price") int price);
 	
+	public int deleteByFieldRealEstate(@Param("id") int id);
+	
 }

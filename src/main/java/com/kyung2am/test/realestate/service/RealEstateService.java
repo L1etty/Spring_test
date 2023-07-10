@@ -44,4 +44,9 @@ public class RealEstateService {
 		return count;
 	}
 	
+	public int deleteByFieldRealEstate(int id) {
+		int count = estateRepository.deleteByFieldRealEstate(id);
+		return count;
+	}
+	
 }
