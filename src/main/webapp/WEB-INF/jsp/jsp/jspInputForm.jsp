@@ -7,7 +7,7 @@
 <title>Sellr 추가</title>
 </head>
 <body>
-	<form action="" method="post">
+	<form action="/seller/add_seller" method="post">
 		<label>닉네임</label><input type="text" name="nickname"><br>
 		<label>프로플 사진 url</label><input type="text" name="profileImage"><br>
 		<label>온도</label><input type="text" name="temperature"><br>
