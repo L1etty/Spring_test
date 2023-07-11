@@ -103,8 +103,9 @@
 		UPDATE
 			`real_estate`
 		SET
-			`type` = '전세'
-			,`price` = 70000
+			`type` = #{type}
+			,`price` = #{price}
+			,`updatedAt` = now()
 		WHERE
 			`id` = #{id}
 	</update>
