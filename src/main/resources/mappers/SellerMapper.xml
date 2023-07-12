@@ -22,5 +22,34 @@
  		)
  	
  	</insert>
+ 	
+ 	<select id="selectLastSeller" resultType="com.kyung2am.test.seller.domain.Seller">
+ 		SELECT
+ 			`id`
+			,`nickname`
+			,`profileImage`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`seller`
+		ORDER BY
+			`updatedAt` DESC
+		LIMIT 1;
+ 	</select>
+ 	
+ 	 <select id="selectIdSeller" resultType="com.kyung2am.test.seller.domain.Seller" parameterType="int">
+ 		SELECT
+ 			`id`
+			,`nickname`
+			,`profileImage`
+			,`temperature`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`seller`
+		WHERE
+			`id` = #{id}
+ 	</select>
  
  </mapper>
