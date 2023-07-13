@@ -17,7 +17,7 @@ public class JSTLController {
 		return "jstl/jstl01";
 	}
 	
-	@GetMapping("test02")
+	@GetMapping("/test02")
 	public String test02(Model model) {
 		
 		List<String> musicRanking = new ArrayList<>();
@@ -27,7 +27,7 @@ public class JSTLController {
 		musicRanking.add("거짓말");
 		musicRanking.add("보고싶다");
 		
-		model.addAttribute(musicRanking);
+		model.addAttribute("musicRanking", musicRanking);
 		
 		return "jstl/jstl02";
 	}
