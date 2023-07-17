@@ -3,15 +3,20 @@
 
 #warp{
 	width: 1200px;
-	height: 1000px;
 	margin: auto;
 }
 header{
-	height: 100px;
+}
+.logo{
+	height: 70px;
 }
 #contents{
-	height: 1000px;
+	height: 800px;
 }
 footer{
+	height: 100px;
+}
+.footer-logo{
+	width: 100px;
 	height: 100px;
 }

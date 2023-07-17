@@ -26,29 +26,50 @@
 			</header>
 			<section id="contents" class="col-10">
 				<article class="container mt-3">
-					<h2>과거 날씨</h2>
-					<table class="table text-center">
-						<thead>
-							<tr>
-								<th>날짜</th>
-								<th>날씨</th>
-								<th>기온</th>
-								<th>강수량</th>
-								<th>미세먼지</th>
-								<th>풍속</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>2015년 7월 1일</td>
-								<td>구름</td>
-								<td>21.9</td>
-								<td>83.5mm</td>
-								<td>보통</td>
-								<td>2/9km/h</td>
-							</tr>
-						</tbody>
-					</table>
+					<h2>날씨 입력</h2>
+					<form class="">
+					
+						<div class="form-inline justify-content-between mb-5">
+							<div class="form-inline">
+								<label>날짜</label><input class="form-control">
+							</div>
+							<div class="form-inline">
+								<label>날씨</label>
+								<select class="form-control">
+									<option>맑음</option>
+								</select>
+							</div>
+							<div class="form-inline">
+								<label>미세먼지</label>
+								<select class="form-control">
+									<option>좋음</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-inline justify-content-between">
+							<div class="input-group">
+								<input class="form-control">
+							    <div class="input-group-prepend">
+							      <div class="input-group-text">°C</div>
+							    </div>
+							</div>
+							<div class="input-group">
+								<input class="form-control">
+							    <div class="input-group-prepend">
+							      <div class="input-group-text">mm</div>
+							    </div>
+							</div>
+							<div class="input-group">
+								<input class="form-control">
+							    <div class="input-group-prepend">
+							      <div class="input-group-text">km/h</div>
+							    </div>
+							</div>
+						</div>
+						<div class="d-flex justify-content-end">
+							<button class="btn btn-success">버튼</button>
+						</div>
+					</form>
 				</article>
 			</section>	
 		</div>
