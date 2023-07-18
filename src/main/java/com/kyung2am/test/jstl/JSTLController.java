@@ -1,16 +1,26 @@
 package com.kyung2am.test.jstl;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kyung2am.test.jstl.domain.Member;
+import com.kyung2am.test.jstl.domain.WeatherHistory;
+import com.kyung2am.test.jstl.service.JSTLService;
 
 @Controller
 @RequestMapping("/jstl")
@@ -170,13 +180,35 @@ public class JSTLController {
 		return "/jstl/jstl04";
 	}
 	
+	@Autowired
+	private JSTLService jstlService;
+	
 	@GetMapping("/test05")
-	public String test05() {
+	public String test05(Model model) {
+		
+		List<WeatherHistory> history = jstlService.getWeatherHistory();
+		model.addAttribute("weatherhistory", history);
+		
 		return "/jstl/jstl05";
 	}
 	
 	@GetMapping("/test05input")
 	public String test05input() {
 		return "/jstl/jstl05_input";
+	}
+	
+	@GetMapping("/test05add")
+	public String addWeatherHistory(
+			@RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
+			@RequestParam String weather,
+			@RequestParam double temperatures,
+			@RequestParam double precipitation,
+			@RequestParam String microDust,
+			@RequestParam double windSpeed
+			) {
+		
+		
+		int count = jstlService.addWeatherHistory(date, weather, temperatures, precipitation, microDust, windSpeed);
+		return "redirect:/jstl/test05";
 	}
 }

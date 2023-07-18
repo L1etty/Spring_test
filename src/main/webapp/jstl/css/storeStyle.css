@@ -1,21 +1,21 @@
 @charset "UTF-8";
 
-
 #warp{
-	width: 1200px;
+	width: 500px;
 	margin: auto;
 }
 header{
-}
-.logo{
 	height: 70px;
 }
-#contents{
+
+.titles{
+	font-size: 40px;
+	font-weight: lighter;
 }
+
+.maincontents{
+}
+
 footer{
-	height: 100px;
-}
-.footer-logo{
-	width: 100px;
 	height: 100px;
 }

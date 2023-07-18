@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,19 +14,7 @@
 <body>
 	<div id="warp">
 		<div class="d-flex">			
-			<header class="bg-primary col-2">
-				<div class="logo d-flex justify-content-center">
-					<h4 class="lgoo d-flex align-items-center">기상청</h4>
-				</div>
-				<nav class="menu">
-					<ul class="nav flex-column text-light">
-						<li class="nav-item m"><a class="nav-link font-weight-bold pl-0">날씨</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">날씨입력</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">테마날씨</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">관측 기후</a></li>
-					</ul>
-				</nav>
-			</header>
+			<%@include file="jstl05_header.jsp" %>
 			<section id="contents" class="col-10">
 				<article class="container mt-3">
 					<h2>과거 날씨</h2>
@@ -47,20 +38,48 @@
 								<td>보통</td>
 								<td>2/9km/h</td>
 							</tr>
+							<c:forEach var="history" items="${weatherhistory}">
+								<tr>
+									<td><fmt:formatDate value="${history.date}" pattern="yyyy년 M월 d일"/></td>
+									<td>
+										<c:choose>
+											<c:when test="${history.weather eq '비'}">
+												<img src="/jstl/img/rainy.jpg">
+											</c:when>
+											<c:when test="${history.weather eq '구름조금'}">
+												<img src="/jstl/img/partlyCloudy.jpg">
+											</c:when>
+											<c:when test="${history.weather eq '흐림'}">
+												<img src="/jstl/img/cloudy.jpg">
+											</c:when>
+											<c:when test="${history.weather eq '맑음'}">
+												<img src="/jstl/img/sunny.jpg">
+											</c:when>
+											<c:otherwise>
+												${history.weather}
+											</c:otherwise>
+										</c:choose>
+									</td>
+									<td>
+										${history.temperatures}°C
+									</td>
+									<td>
+										${history.precipitation}mm
+									</td>
+									<td>
+										${history.microDust}
+									</td>
+									<td>
+										${history.windSpeed}km/h
+									</td>
+								</tr>
+							</c:forEach>
 						</tbody>
 					</table>
 				</article>
 			</section>	
 		</div>
-		<footer>
-			<div class="d-flex mt-2">
-				<div class="footer-logo">Logo</div>
-				<div>
-					(07062) 서울시 동작구 여의대로방로16길 61<br>
-					 Copyright@2020 KMA. ALL Rights RESERVED.
-				</div>
-			</div>
-		</footer>
+		<%@include file="jstl05_footer.jsp" %>
 	</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

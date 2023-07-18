@@ -11,56 +11,50 @@
 <body>
 	<div id="warp">
 		<div class="d-flex">			
-			<header class="bg-primary col-2">
-				<div class="logo d-flex justify-content-center">
-					<h4 class="lgoo d-flex align-items-center">기상청</h4>
-				</div>
-				<nav class="menu">
-					<ul class="nav flex-column text-light">
-						<li class="nav-item m"><a class="nav-link font-weight-bold pl-0">날씨</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">날씨입력</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">테마날씨</a></li>
-						<li class="nav-item"><a class="nav-link font-weight-bold pl-0">관측 기후</a></li>
-					</ul>
-				</nav>
-			</header>
+			<%@ include file="jstl05_header.jsp" %>
 			<section id="contents" class="col-10">
 				<article class="container mt-3">
 					<h2>날씨 입력</h2>
-					<form class="">
+					<form action="test05add" method="get">
 					
 						<div class="form-inline justify-content-between mb-5">
 							<div class="form-inline">
-								<label>날짜</label><input class="form-control">
+								<label>날짜</label><input class="form-control" name="date">
 							</div>
 							<div class="form-inline">
 								<label>날씨</label>
-								<select class="form-control">
-									<option>맑음</option>
+								<select class="form-control" name="weather">
+									<option value="맑음">맑음</option>
+									<option value="비">비</option>
+									<option value="흐림">흐림</option>
+									<option value="구름조금">구름조금</option>
 								</select>
 							</div>
 							<div class="form-inline">
 								<label>미세먼지</label>
-								<select class="form-control">
-									<option>좋음</option>
+								<select class="form-control" name="microDust">
+									<option value="좋음">좋음</option>
+									<option value="보통">보통</option>
+									<option value="나쁨">나쁨</option>
+									<option value="최악">최악</option>
 								</select>
 							</div>
 						</div>
 						<div class="form-inline justify-content-between">
 							<div class="input-group">
-								<input class="form-control">
+								<input class="form-control" name="temperatures">
 							    <div class="input-group-prepend">
 							      <div class="input-group-text">°C</div>
 							    </div>
 							</div>
 							<div class="input-group">
-								<input class="form-control">
+								<input class="form-control" name="precipitation">
 							    <div class="input-group-prepend">
 							      <div class="input-group-text">mm</div>
 							    </div>
 							</div>
 							<div class="input-group">
-								<input class="form-control">
+								<input class="form-control" name="windSpeed">
 							    <div class="input-group-prepend">
 							      <div class="input-group-text">km/h</div>
 							    </div>
@@ -73,15 +67,7 @@
 				</article>
 			</section>	
 		</div>
-		<footer>
-			<div class="d-flex mt-2">
-				<div class="footer-logo">Logo</div>
-				<div>
-					(07062) 서울시 동작구 여의대로방로16길 61<br>
-					 Copyright@2020 KMA. ALL Rights RESERVED.
-				</div>
-			</div>
-		</footer>
+		<%@ include file="jstl05_footer.jsp" %>
 	</div>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

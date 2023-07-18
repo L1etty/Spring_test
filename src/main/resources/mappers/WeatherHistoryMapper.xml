@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kyung2am.test.jstl.repository.JSTLRepository">
+  
+  	<select id="selectWeatherHistory" resultType="com.kyung2am.test.jstl.domain.WeatherHistory">
+  		SELECT
+			`id`
+			,`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`weatherhistory`;
+  	</select>
+  	<insert id="insertWeatherHistory" parameterType="com.kyung2am.test.jstl.domain.WeatherHistory">
+  		INSERT INTO `weatherhistory`
+		(
+			`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+		)
+		VALUE
+		(
+			#{date}
+			,#{weather}
+			,#{temperatures}
+			,#{precipitation}
+			,#{microDust}
+			,#{windSpeed}
+		)
+  	</insert>
+  
+  </mapper>

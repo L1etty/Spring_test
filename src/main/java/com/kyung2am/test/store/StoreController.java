@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -16,11 +17,11 @@ public class StoreController {
 	@Autowired
 	private StoreService storeService;
 	
-	@ResponseBody
 	@RequestMapping("/store")
-	public List<Store> storeList() {
+	public String storeList(Model model) {
 		List<Store> storelist = storeService.getStoreList();
-		return storelist;
+		model.addAttribute("storelist", storelist);
+		return "/jstl/store/store";
 	}
 	
 }
