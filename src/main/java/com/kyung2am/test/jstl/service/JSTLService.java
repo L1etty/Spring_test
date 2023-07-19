@@ -25,4 +25,9 @@ public class JSTLService {
 		return count;
 	}
 	
+	public int addWeatherHistoryByobject(WeatherHistory weather) {
+		int count = jstlRepository.insertWeatherHistoryByObject(weather);
+		return count;
+	}
+	
 }

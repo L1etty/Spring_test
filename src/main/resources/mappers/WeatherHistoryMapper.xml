@@ -40,5 +40,26 @@
 			,#{windSpeed}
 		)
   	</insert>
+  	
+  	<insert id="insertWeatherHistoryByObject" parameterType="com.kyung2am.test.jstl.domain.WeatherHistory">
+  		INSERT INTO `weatherhistory`
+		(
+			`date`
+			,`weather`
+			,`temperatures`
+			,`precipitation`
+			,`microDust`
+			,`windSpeed`
+		)
+		VALUE
+		(
+			#{date}
+			,#{weather}
+			,#{temperatures}
+			,#{precipitation}
+			,#{microDust}
+			,#{windSpeed}
+		)
+  	</insert>
   
   </mapper>

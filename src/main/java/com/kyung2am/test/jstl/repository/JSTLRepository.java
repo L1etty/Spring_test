@@ -19,4 +19,5 @@ public interface JSTLRepository {
 			, @Param("microDust") String microDust
 			, @Param("windSpeed") double windSpeed
 			);
+	public int insertWeatherHistoryByObject(WeatherHistory weather);
 }
