@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.kyung2am.test.favorite.repository.FavoriteRepository">
+  
+  	<select id="selectFavoriteList" resultType="com.kyung2am.test.favorite.domain.Favorite">
+		SELECT
+			`id`
+			,`name`
+			,`url`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`favorites`;
+  	</select>
+  
+  	<insert id="insertFavorite" parameterType="String">
+  		INSERT INTO `favorites`
+		(
+			`name`
+			,`url`
+		)
+		VALUE
+		(
+			#{name}
+			,#{url}
+		)
+  		
+  	</insert>
+  </mapper>
