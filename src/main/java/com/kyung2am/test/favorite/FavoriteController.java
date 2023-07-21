@@ -43,7 +43,6 @@ public class FavoriteController {
 			@RequestParam("name") String name
 			,@RequestParam("url") String url
 			) {
-		
 		int count = favoriteService.addFavorite(name, url);
 		
 		Map<String, String> result = new HashMap<>();
@@ -56,7 +55,33 @@ public class FavoriteController {
 		return result;
 	}
 	
+	@GetMapping("/url_confirm")
+	@ResponseBody
+	public Map<String, Boolean> confirmFavorite(@RequestParam("url") String url) {
+		
+		Map<String, Boolean> duplicate = new HashMap<>();
+		
+		if(favoriteService.urlDuplicateCheck(url)) {
+			//중복O
+			duplicate.put("Duplicate", true);
+		}else {
+			duplicate.put("Duplicate", false);
+		}
+		
+		return duplicate;
+	}
 	
+	@GetMapping("/delete")
+	@ResponseBody
+	public Map<String, String> removeFavorite(@RequestParam("id") int id) {
+		Map<String, String> result = new HashMap<>();
+		if(favoriteService.removeFavorite(id) <= 1) {
+			result.put("Result", "success");
+		}else {
+			result.put("Result", "fail");
+		}
+		return result;
+	}
 	
 	
 	

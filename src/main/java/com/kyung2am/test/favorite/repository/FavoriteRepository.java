@@ -17,4 +17,9 @@ public interface FavoriteRepository {
 			,@Param("url") String url
 			);
 	
+	public int selecturlDuplicate(
+			@Param("url") String url
+			);
+	
+	public int deleteFavorite(@Param("id") int id);
 }
