@@ -8,7 +8,7 @@
 	<%@include file="pension_script_css.jsp" %>
 </head>
 <body>
-	<div class="wrap">
+	<div id="wrap">
 		<%@include file="pension_header.jsp" %>
 		
 		<section class="d-flex justify-content-center">
@@ -22,7 +22,7 @@
 				</div>
 				<div class="form-group">
 					<label>예약날짜</label>
-					<input id="datepicker" class="form-control bg-white">
+					<input id="datepicker" class="form-control bg-white" readonly="readonly">
 				</div>
 				<div class="form-group">
 					<label>숙박일수</label>
@@ -47,15 +47,67 @@
 		$(document).ready(function(){
 	
 			$("#datepicker").datepicker({
-				dateFormat: 'yy-mm-dd'
+				dateFormat: 'yy-mm-dd',
+				minDate: 0
 			});
 			
 			//let date = $("#datepicker").datepicker("getDate");
-			var date = $("#datepciker").val();
-			let name = $("#name").val();
 			
 			$("#addBtn").on("click", function(){
-				alert($("#name").val());
+			    var date = $("#datepicker").val();
+			    var name = $("#name").val();
+			    var day = $("#day").val();
+			    var headcount = $("#headcount").val();
+			    var phoneNumber = $("#phoneNumber").val();
+			    
+			    if (name == "") {
+			        alert("이름을 입력해주세요.");
+			        return;
+			    }
+			    
+			    if (date == "") {
+			        alert("날짜를 선택해주세요.");
+			        return;
+			    }
+			    
+			    if (day == "") {
+			        alert("일수를 선택해주세요.");
+			        return;
+			    }
+			    
+			    if (headcount == "") {
+			        alert("인원수를 입력해주세요.");
+			        return;
+			    }
+			    
+			    if (phoneNumber == "") {
+			        alert("전화번호를 입력해주세요.");
+			        return;
+			    }
+			    
+			    if(!phoneNumber.startsWith("010"))   {
+                    alert("010 으로 시작하는 번호만 입력가능합니다. ");
+                    return;
+                }
+			    
+			    $.ajax({
+			    	type:"get"
+			    	,url:"/pension/add"
+			    	,data:{"name":name,"headcount":headcount,"day":day,"date":date,"phoneNumber":phoneNumber}
+			    	,success:function(data){
+			    		if(data.result == "success"){
+			    			location.href = "/pension/reservationList";
+			    		}else{
+			    			alert("추가 실패");
+			    		}
+			    	}
+			    	,error:function(){
+			    		alert("추가 에러");
+			    	}
+			    	
+			    });
+			    
+			    
 			});	
 			
 			

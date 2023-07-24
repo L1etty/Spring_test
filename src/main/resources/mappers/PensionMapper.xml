@@ -35,4 +35,20 @@
 		(#{name},#{headcount},#{day},#{date},#{phoneNumber},'대기중');
  	</insert>
  	
+ 	<select id="selectReservationBooking" parameterType="String">
+ 		SELECT
+			`id`
+			,`name`
+			,`headcount`
+			,`day`
+			,`date`
+			,`phoneNumber`
+			,`state`
+			,`createdAt`
+			,`updatedAt`
+		FROM
+			`booking`
+		WHERE `name` = #{name} AND `phoneNumber` = #{phoneNumber}
+ 	</select>
+ 	
  </mapper>

@@ -24,7 +24,7 @@ public class PensionController {
 	@Autowired
 	private PensionService pensionService;
 	
-	@GetMapping("/")
+	@GetMapping("")
 	public String pensionmain() {
 		return "/pension/pension_list_input";
 		
@@ -78,5 +78,17 @@ public class PensionController {
 		}
 		
 		return json;
+	}
+	
+	@ResponseBody
+	@GetMapping("/selectReservationBooking")
+	public Booking getReservationBooking(
+			@RequestParam("name") String name
+			,@RequestParam("phoneNumber") String phoneNumber
+			) {
+		
+		Booking booking = pensionService.getReservationBooking(name, phoneNumber);
+		
+		return booking;
 	}
 }

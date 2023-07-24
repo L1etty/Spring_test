@@ -36,4 +36,11 @@ public class PensionService {
 		int count = pensionRepository.insertBooking(name, headcount, day, date, phoneNumber);
 		return count;
 	}
+	
+	public Booking getReservationBooking(String name, String phoneNumber) {
+		
+		Booking booking = pensionRepository.selectReservationBooking(name, phoneNumber);
+		
+		return booking;
+	}
 }

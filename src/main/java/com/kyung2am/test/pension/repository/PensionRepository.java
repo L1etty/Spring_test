@@ -22,5 +22,9 @@ public interface PensionRepository {
 			,@Param("date") Date date
 			,@Param("phoneNumber") String phoneNumber
 			);
+	
+	public Booking selectReservationBooking(
+			@Param("name") String name
+			,@Param("phoneNumber") String phoneNumber);
 
 }

@@ -27,25 +27,9 @@
                     <div class="m-4">
                         <div class="d-flex align-items-end">
                             <h3 class="mr-4">예약 확인</h3>
-                        
-                            <label>회원
-                            <input type="radio" name="type" value='member' checked></label>
-                            <label class="ml-3">비 회원
-                            <input type="radio" name="type" value="nonMemeber"></label>
-                        </div>
-                        <div class="member-input mt-3" id="member">
-                            <div class="input-gorup form-inline">
-                                <label class="input-label">아이디 :</label>
-                                <input type="text" class="form-control text-input" id="id">
-                            </div>
-                            <div class="input-gorup form-inline mt-3">
-                                <label class="input-label">비밀번호 :</label>
-                                <input type="password" class="form-control text-input" id="password">
-                            </div>
-
                         </div>
 
-                        <div class="no-member-input mt-3 d-none" id="nonMember">
+                        <div class="no-member-input mt-3" id="nonMember">
                             <div class="input-gorup form-inline">
                                 <label class="input-label">이름 </label>
                                 <input type="text" class="form-control text-input" id="name">
@@ -53,10 +37,6 @@
                             <div class="input-gorup form-inline mt-3">
                                 <label class="input-label">전화번호 </label>
                                 <input type="text" class="form-control text-input" id="phoneNumber">
-                            </div>
-                            <div class="input-gorup form-inline mt-3">
-                                <label class="input-label">날짜 </label>
-                                <input type="text" class="form-control text-input" id="date">
                             </div>
 
                         </div>
@@ -81,6 +61,8 @@
 
     <script>
         $(document).ready(function() {
+        	
+        	
 
             // 데이트 피커 셋팅
             $( "#date" ).datepicker({
@@ -100,23 +82,7 @@
             });
 
             $("#lookupBtn").on('click', function() {
-                if($("input[name=type]:checked").val() == "member") {
-
-                    // 회원 입력 항목 유효성 검사 
-                    if($("#id").val() == '')   {
-                        alert("아이디를 입력하세요.");
-                        return;
-                    }
-
-                    if($("#password").val() == '')   {
-                        alert("비밀번호를 입력하세요.");
-                        return;
-                    }
-
-                    alert("조회 성공");
-
-                } else {
-
+           
                     // 비 회원 입력 항목 유효성 검사 
                     if($("#name").val() == '')   {
                         alert("이름을 입력하세요.");
@@ -133,14 +99,32 @@
                         alert("010 으로 시작하는 번호만 입력가능합니다. ");
                         return;
                     }
-
-                    if($("#date").val() == '')   {
-                        alert("날짜를 입력하세요.");
-                        return;
-                    }
-
-                    alert("조회 성공");
-                }
+                    
+                    let name = $("#name").val();
+                    let phoneNumber = $("#phoneNumber").val();
+                    
+                    $.ajax({
+                    	type:"get"
+                    	,url:"/pension/selectReservationBooking"
+                    	,data:{"name":name,"phoneNumber":phoneNumber}
+                    	,success:function(data){
+                    		if(data.id != null){
+                    			alert("이름 : " + data.name
+                    					+ "\n날짜 : " + data.date.substring(0,10)
+                    					+ "\n일수 : " + data.day
+                    					+ "\n인원 : " + data.headcount
+                    					+ "\n상태 : " + data.state);
+                    		}else if(data.id == null){
+                    			alert("조회 결과가 없습니다");
+                    		}else{
+                    			alert("검색 실패");
+                    		}
+                    	}
+                    	,error:function(){
+                    		alert("검색 에러");
+                    	}
+                    });
+                   
             });
 
             var bannerList = ["/pension/images/test06_banner1.jpg", "/pension/images/test06_banner2.jpg", "/pension/images/test06_banner3.jpg", "/pension/images/test06_banner4.jpg"];
