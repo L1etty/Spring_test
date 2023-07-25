@@ -82,13 +82,23 @@ public class PensionController {
 	
 	@ResponseBody
 	@GetMapping("/selectReservationBooking")
-	public Booking getReservationBooking(
+	public Map<String, Object> getReservationBooking(
 			@RequestParam("name") String name
 			,@RequestParam("phoneNumber") String phoneNumber
 			) {
 		
 		Booking booking = pensionService.getReservationBooking(name, phoneNumber);
 		
-		return booking;
+		Map<String, Object> bookings = new HashMap<>();
+		
+		if (booking == null) {
+			bookings.put("result", "fail");
+		} else {
+			bookings.put("result", "success");
+			bookings.put("info", booking);
+		}
+		
+		
+		return bookings;
 	}
 }

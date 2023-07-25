@@ -108,13 +108,13 @@
                     	,url:"/pension/selectReservationBooking"
                     	,data:{"name":name,"phoneNumber":phoneNumber}
                     	,success:function(data){
-                    		if(data.id != null){
-                    			alert("이름 : " + data.name
-                    					+ "\n날짜 : " + data.date.substring(0,10)
-                    					+ "\n일수 : " + data.day
-                    					+ "\n인원 : " + data.headcount
-                    					+ "\n상태 : " + data.state);
-                    		}else if(data.id == null){
+                    		if(data.result == "success"){
+                    			alert("이름 : " + data.info.name
+                    					+ "\n날짜 : " + data.info.date.substring(0,10)
+                    					+ "\n일수 : " + data.info.day
+                    					+ "\n인원 : " + data.info.headcount
+                    					+ "\n상태 : " + data.info.state);
+                    		}else if(data.result == "fail"){
                     			alert("조회 결과가 없습니다");
                     		}else{
                     			alert("검색 실패");
