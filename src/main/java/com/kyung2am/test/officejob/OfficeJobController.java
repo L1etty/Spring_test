@@ -29,7 +29,7 @@ public class OfficeJobController {
 	
 	@GetMapping("/2")
 	@ResponseBody
-	public List<OfficeJobOpening> test2(@RequestParam("officeId") int officeId){
+	public List<OfficeJobOpening> findByOfficeId(@RequestParam("officeId") int officeId){
 		List<OfficeJobOpening> office = officeJobRepository.findByOfficeId(officeId);
 		
 		return office;
@@ -40,14 +40,34 @@ public class OfficeJobController {
 //	웹 back-end 개발자 이고 정규직인 공고를 조회하고 아래와 같이 출력하세요.
 	@GetMapping("/3")
 	@ResponseBody
-	public List<OfficeJobOpening> test3(){
+	public List<OfficeJobOpening> findByPositionAndType(){
 		return officeJobRepository.findByPositionAndType("웹 back-end 개발자", "정규직");
 	}
 	
 	@GetMapping("/4")
 	@ResponseBody
-	public List<OfficeJobOpening> test4(){
+	public List<OfficeJobOpening> findByTypeOrSalaryGreaterThanEqual(){
 		return officeJobRepository.findByTypeOrSalaryGreaterThanEqual("정규직", 9000);
 	}
+
+	@GetMapping("/5")
+	@ResponseBody
+	public List<OfficeJobOpening> findTop3ByTypeOrderBySalaryDesc(){
+		return officeJobRepository.findTop3ByTypeOrderBySalaryDesc("계약직");
+	}
+	
+	@GetMapping("/6")
+	@ResponseBody
+	public List<OfficeJobOpening> findByRegionAndSalaryBetween(){
+		return officeJobRepository.findByRegionAndSalaryBetween("성남시 분당구",7000,8500);
+	}
+
+	@GetMapping("/7")
+	@ResponseBody
+	public List<OfficeJobOpening> findByTypeAndSalaryGreaterThanAndDeadLine(){
+		return officeJobRepository.findByTypeAndSalaryGreaterThanAndDeadLine("정규직", 8100, "2026-04-10");
+	}
+	
+	
 	
 }
